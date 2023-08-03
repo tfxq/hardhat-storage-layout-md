@@ -2,7 +2,10 @@
   "name": "hardhat-generate-storage-namespace",
   "version": "0.0.1",
   "description": "script to generate unique storage slot via: bytes32(uint(keccak256(\"input\")) - 1)",
-  "repository": "github:3obby/hardhat-generate-storage-namespace",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3obby/hardhat-generate-storage-namespace.git"
+  },
   "author": "3obby",
   "license": "MIT",
   "main": "dist/src/index.js",
@@ -49,5 +52,12 @@
   },
   "peerDependencies": {
     "hardhat": "^2.15.0"
+  },
+  "bugs": {
+    "url": "https://github.com/3obby/hardhat-generate-storage-namespace/issues"
+  },
+  "homepage": "https://github.com/3obby/hardhat-generate-storage-namespace#readme",
+  "directories": {
+    "test": "test"
   }
 }
