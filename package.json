@@ -1,6 +1,6 @@
 {
   "name": "hardhat-storage-layout-json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hardhat TS plugin to generate a json file describing the storage layout of contracts",
   "repository": {
     "type": "git",
@@ -34,6 +34,9 @@
     "LICENSE",
     "README.md"
   ],
+  "dependencies": {
+    "console-table-printer": "^2.9.0"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/fs-extra": "^5.0.4",

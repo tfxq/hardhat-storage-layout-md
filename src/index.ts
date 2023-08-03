@@ -1,20 +1,50 @@
-import { extendEnvironment } from "hardhat/config";
-import { ethers } from "ethers";
+import { TASK_CHECK, TASK_COMPILE } from "hardhat/builtin-tasks/task-names";
+import { extendConfig, extendEnvironment, task } from "hardhat/config";
+import { lazyObject } from "hardhat/plugins";
+import { HardhatConfig, HardhatUserConfig } from "hardhat/types";
+import path from "path";
 
-// We're extending the Hardhat Runtime Environment, adding our hashing functionality
+import { StorageLayout } from "./storageLayout";
 import "./type-extensions";
 
-function getHash(input: string) {
-  const message = ethers.toUtf8Bytes(input);
-  const messageHash = ethers.keccak256(message);
+export const PluginName = "hardhat-storage-layout";
 
-  // Convert the message hash (hex string) to BigInt, subtract 1, and convert back to hex string
-  const hashMinusOneBigInt = ethers.toBigInt(messageHash) - 1n;
-  const hashMinusOneHex = ethers.toBeHex(hashMinusOneBigInt);
+task(TASK_CHECK).setAction(async (args, hre, runSuper) => {
+  await hre.storageLayout.export();
+  await runSuper(args);
+});
 
-  return hashMinusOneHex;
-}
+task(TASK_COMPILE).setAction(async function (args, hre, runSuper) {
+  for (const compiler of hre.config.solidity.compilers) {
+    compiler.settings.outputSelection["*"]["*"].push("storageLayout");
+  }
+  console.log(hre.config.solidity.compilers);
+  await runSuper(args);
+});
+
+extendConfig(
+  (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) => {
+    const storageLayoutUserPath = userConfig.paths?.newStorageLayoutPath;
+    let newStorageLayoutPath: string;
+
+    if (storageLayoutUserPath === undefined) {
+      newStorageLayoutPath = path.join(config.paths.root, "./storageLayout");
+    } else {
+      if (path.isAbsolute(storageLayoutUserPath)) {
+        newStorageLayoutPath = storageLayoutUserPath;
+      } else {
+        newStorageLayoutPath = path.normalize(
+          path.join(config.paths.root, storageLayoutUserPath)
+        );
+      }
+    }
+
+    config.paths.newStorageLayoutPath = newStorageLayoutPath;
+  }
+);
 
 extendEnvironment((hre) => {
-  hre.getHash = getHash;
+  hre.storageLayout = lazyObject(() => new StorageLayout(hre));
 });
+
+module.exports = {};
