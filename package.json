@@ -1,10 +1,10 @@
 {
-  "name": "hardhat-generate-storage-namespace",
-  "version": "0.0.8",
-  "description": "script to generate unique storage slot via: bytes32(uint(keccak256(\"input\")) - 1)",
+  "name": "hardhat-storage-layout-json",
+  "version": "0.0.1",
+  "description": "Hardhat TS plugin to generate a json file describing the storage layout of contracts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/3obby/hardhat-generate-storage-namespace.git"
+    "url": "git+https://github.com/3obby/hardhat-storage-layout-json.git"
   },
   "author": "3obby",
   "license": "MIT",
@@ -34,10 +34,6 @@
     "LICENSE",
     "README.md"
   ],
-  "dependencies": {
-    "ethers": "^6.1.0",
-    "hardhat-generate-storage-namespace": "^0.0.6"
-  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/fs-extra": "^5.0.4",
@@ -57,9 +53,9 @@
     "hardhat": "^2.15.0"
   },
   "bugs": {
-    "url": "https://github.com/3obby/hardhat-generate-storage-namespace/issues"
+    "url": "https://github.com/3obby/hardhat-storage-layout-json/issues"
   },
-  "homepage": "https://github.com/3obby/hardhat-generate-storage-namespace#readme",
+  "homepage": "https://github.com/3obby/hardhat-storage-layout-json#readme",
   "directories": {
     "test": "test"
   }
