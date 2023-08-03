@@ -1,4 +1,4 @@
-# generate-function-selectors plugin
+# hardhat-generate-storage-namespace plugin
 
 Hardhat TS plugin to generate a storage namespace for multi/proxy contracts to avoid collision.
 Extends the hre with hre.getHash, which you can use in scripts/tasks
