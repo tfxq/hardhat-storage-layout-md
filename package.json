@@ -1,6 +1,6 @@
 {
   "name": "hardhat-generate-storage-namespace",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "script to generate unique storage slot via: bytes32(uint(keccak256(\"input\")) - 1)",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
   ],
   "dependencies": {
     "ethers": "^6.1.0",
-    "hardhat-generate-storage-namespace": "^0.0.5"
+    "hardhat-generate-storage-namespace": "^0.0.6"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

@@ -1862,6 +1862,14 @@ hardhat-generate-storage-namespace@^0.0.5:
   dependencies:
     ethers "^6.1.0"
 
+hardhat-generate-storage-namespace@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/hardhat-generate-storage-namespace/-/hardhat-generate-storage-namespace-0.0.6.tgz#392a8e815bc12db04ac96b09612d662b65b1cff1"
+  integrity sha512-DOTVabkFF1QyrV5a5NYTic4dV1NYGXfHX5p/vb4pbQPlP/HF8EYKE+2Q1PY0ZU2yq2qbRes0xKVLrid8aywHHg==
+  dependencies:
+    ethers "^6.1.0"
+    hardhat-generate-storage-namespace "^0.0.5"
+
 hardhat@^2.0.0:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/hardhat/-/hardhat-2.17.1.tgz#4b6c8c8f624fd23d9f40185a4af24815d05a486a"
