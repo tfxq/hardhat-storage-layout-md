@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "commonjs",
+    "target": "ES2019",
+    "module": "ES2020",
     "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./dist/esm",
     "strict": true,
-    "rootDirs": ["./src", "./test"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "composite": true,
+    "moduleResolution": "node"
   },
-  "exclude": ["dist", "node_modules"],
-  "include": [
-    "./test",
-    "./src"
-  ]
+  "include": ["index.ts"],
+  "exclude": ["node_modules", "**/__tests__/*"],
+  "references": [{ "path": "./tsconfig.cjs.json" }]
 }
