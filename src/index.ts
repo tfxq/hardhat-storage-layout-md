@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 // We're extending the Hardhat Runtime Environment, adding our hashing functionality
 import "./type-extensions";
 
-async function getHash(input: string) {
+function getHash(input: string) {
   const message = ethers.toUtf8Bytes(input);
   const messageHash = ethers.keccak256(message);
 

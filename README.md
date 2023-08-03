@@ -62,3 +62,10 @@ npx hardhat getHash --input hello
 ```bash
 yarn hardhat getHash --input hello
 ```
+
+You can also now include this in scripts/tests:
+
+```
+import { getHash } from "hardhat"
+console.log(getHash("ok"));
+```
