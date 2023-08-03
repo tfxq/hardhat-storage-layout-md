@@ -1,6 +1,6 @@
 {
   "name": "hardhat-generate-storage-namespace",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "script to generate unique storage slot via: bytes32(uint(keccak256(\"input\")) - 1)",
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
     "hardhat",
     "hardhat-plugin",
     "storage",
-    "namespace"
+    "namespace",
+    "hash",
+    "keccak256"
   ],
   "scripts": {
     "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
@@ -33,7 +35,8 @@
     "README.md"
   ],
   "dependencies": {
-    "ethers": "^6.1.0"
+    "ethers": "^6.1.0",
+    "hardhat-generate-storage-namespace": "^0.0.5"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

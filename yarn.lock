@@ -1855,6 +1855,13 @@ growl@1.10.5:
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.10.5.tgz#f2735dc2283674fa67478b10181059355c369e5e"
   integrity sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA==
 
+hardhat-generate-storage-namespace@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/hardhat-generate-storage-namespace/-/hardhat-generate-storage-namespace-0.0.5.tgz#861e3ac57e99c229f7db6dc076605b567998794c"
+  integrity sha512-MHUid7m6HZE7JjNpL2mWwZPHzIwHTkgtS3gQnX39XI+Z0fbJfPfzULeN9UmattSGd1NOl9i8S2SK3M5ucvblcA==
+  dependencies:
+    ethers "^6.1.0"
+
 hardhat@^2.0.0:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/hardhat/-/hardhat-2.17.1.tgz#4b6c8c8f624fd23d9f40185a4af24815d05a486a"
