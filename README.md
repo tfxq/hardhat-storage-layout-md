@@ -1,58 +1,64 @@
-# Hardhat TypeScript plugin boilerplate
+# generate-function-selectors plugin
 
-This is a sample Hardhat plugin written in TypeScript. Creating a Hardhat plugin
-can be as easy as extracting a part of your config into a different file and
-publishing it to npm.
+Hardhat TS plugin to generate a storage namespace for multi/proxy contracts to avoid collision.
+Extends the hre with hre.getHash, which you can use in scripts/tasks
 
-This sample project contains an example on how to do that, but also comes with
-many more features:
-
-- A mocha test suite ready to use
-- TravisCI already setup
-- A package.json with scripts and publishing info
-- Examples on how to do different things
-
-## Installation
-
-To start working on your project, just run
-
-```bash
-npm install
+```
+yarn hardhat getHash --input hello
 ```
 
-## Plugin development
+output = bytes32(uint(keccak256("hello")) - 1):
 
-Make sure to read our [Plugin Development Guide](https://hardhat.org/advanced/building-plugins.html) to learn how to build a plugin.
+```
+0x1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36deac7
+```
 
-## Testing
+## Quick Start
 
-Running `npm run test` will run every test located in the `test/` folder. They
-use [mocha](https://mochajs.org) and [chai](https://www.chaijs.com/),
-but you can customize them.
+1. Install the Hardhat plug-in
 
-We recommend creating unit tests for your own modules, and integration tests for
-the interaction of the plugin with Hardhat and its dependencies.
+```npm
+npm install hardhat-generate-storage-namespace
+```
 
-## Linting and autoformat
+```yarn
+yarn add hardhat-generate-storage-namespace
+```
 
-All of Hardhat projects use [prettier](https://prettier.io/) and
-[tslint](https://palantir.github.io/tslint/).
+2. Add this to your hardhat.config.js
 
-You can check if your code style is correct by running `npm run lint`, and fix
-it with `npm run lint:fix`.
+```js
+require("hardhat-generate-storage-namespace");
+```
 
-## Building the project
+```ts
+import "hardhat-generate-storage-namespace";
+```
 
-Just run `npm run build` ️👷
+3. Use this as a script/task. As an example of a Task, You'll need to import 'task' from hardhat to your config:
 
-## README file
+```bash
+...other imports...
+import { task } from "hardhat/config";
 
-This README describes this boilerplate project, but won't be very useful to your
-plugin users.
+...your config...
 
-Take a look at `README-TEMPLATE.md` for an example of what a Hardhat plugin's
-README should look like.
+task("getHash", "Gets the hash of an input string")
+  .addParam("input", "The input string")
+  .setAction(async (taskArgs, hre) => {
+    const result = await hre.getHash(taskArgs.input);
+    console.log(result);
+  });
 
-## Migrating from Buidler?
+  export default config;
+```
 
-Take a look at [the migration guide](MIGRATION.md)!
+Now you're able to to generate a unique storage slot with:
+
+```bash
+npx hardhat getHash --input hello
+```
+
+```bash
+yarn hardhat getHash --input hello
+```
