@@ -19,6 +19,7 @@ export class StorageLayout {
     const outputDirectory = path.resolve(storageLayoutPath);
     if (!outputDirectory.startsWith(this.env.config.paths.root)) {
       throw new HardhatPluginError(
+        "hardhat-storage-layout-json",
         "output directory should be inside the project directory"
       );
     }
@@ -74,7 +75,10 @@ export class StorageLayout {
         }
         data.contracts.push(contract);
 
-        // TODO: export the storage layout to the ./storageLayout/output.md
+        fs.writeFileSync(
+          outputDirectory + "/storage.json",
+          JSON.stringify(data)
+        );
       }
     }
     const prettifier = new Prettify(data.contracts);
