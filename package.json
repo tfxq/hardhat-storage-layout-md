@@ -4,7 +4,7 @@
   "description": "Hardhat TS plugin to generate a json file describing the storage layout of contracts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/3obby/hardhat-storage-layout-json.git"
+    "url": "git+https://github.com/tfxq/hardhat-storage-layout-json.git"
   },
   "author": "3obby",
   "license": "MIT",
@@ -56,9 +56,9 @@
     "hardhat": "^2.15.0"
   },
   "bugs": {
-    "url": "https://github.com/3obby/hardhat-storage-layout-json/issues"
+    "url": "https://github.com/tfxq/hardhat-storage-layout-json/issues"
   },
-  "homepage": "https://github.com/3obby/hardhat-storage-layout-json#readme",
+  "homepage": "https://github.com/tfxq/hardhat-storage-layout-json#readme",
   "directories": {
     "test": "test"
   }
