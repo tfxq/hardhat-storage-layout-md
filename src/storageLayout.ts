@@ -14,25 +14,25 @@ export class StorageLayout {
     this.env = hre;
   }
 
-  public async export() {
+  public jsonToMarkdown(jsonData: any[]): string {
+    if (!Array.isArray(jsonData) || jsonData.length === 0) {
+      return '';
+    }
 
-    // function jsonToMarkdown(jsonData: any[]): string {
-    //   if (!Array.isArray(jsonData) || jsonData.length === 0) {
-    //     return '';
-    //   }
-    //
-    //   const headers = Object.keys(jsonData[0]);
-    //   const separator = headers.map(() => '---');
-    //   const rows = jsonData.map(obj => headers.map(key => obj[key]));
-    //
-    //   const table = [
-    //     headers.join(' | '),
-    //     separator.join(' | '),
-    //     rows.map(row => row.join(' | ')).join('\n'),
-    //   ].join('\n');
-    //
-    //   return table;
-    // }
+    const headers = Object.keys(jsonData[0]);
+    const separator = headers.map(() => '---');
+    const rows = jsonData.map(obj => headers.map(key => obj[key]));
+
+    const table = [
+      headers.join(' | '),
+      separator.join(' | '),
+      rows.map(row => row.join(' | ')).join('\n'),
+    ].join('\n');
+
+    return table;
+  }
+
+  public async export() {
     
     const storageLayoutPath = this.env.config.paths.newStorageLayoutPath;
     const outputDirectory = path.resolve(storageLayoutPath);
@@ -98,10 +98,9 @@ export class StorageLayout {
           outputDirectory + "/storage.json",
           JSON.stringify(data)
         );
-        //
-        // // 生成 Markdown 文件
-        // const markdownData = jsonToMarkdown(JSON.parse(JSON.stringify(data)));
-        // fs.writeFileSync(outputDirectory +"/output.md", markdownData, 'utf-8');
+
+        const markdownData = this.jsonToMarkdown(JSON.parse(JSON.stringify(data)));
+        fs.writeFileSync(outputDirectory +"/output.md", markdownData, 'utf-8');
       }
     }
     const prettifier = new Prettify(data.contracts);
