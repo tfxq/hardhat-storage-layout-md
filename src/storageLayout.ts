@@ -2,7 +2,7 @@ import fs from "fs";
 import { HardhatPluginError } from "hardhat/plugins";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import path from "path";
-import { tsMarkdown } from 'ts-markdown'
+import {tsMarkdown} from 'ts-markdown'
 import { Prettify } from "./prettifier";
 import "./type-extensions";
 import { Row, Table } from "./types";
@@ -79,19 +79,23 @@ export class StorageLayout {
             artifactJsonABI.data.output?.contracts[sourceName][contractName]
               .storageLayout.types[stateVariable.type].numberOfBytes,
           });
+          
           rowsData.push([
-            stateVariable.label,stateVariable.slot,stateVariable.offset,
-            stateVariable.type,artifactJsonABI.idx,artifactJsonABI.source,
+            contractName,
+            stateVariable.label,
+            stateVariable.slot,
+            stateVariable.offset,
+            stateVariable.type,
+            artifactJsonABI.idx,
+            artifactJsonABI.source,
             artifactJsonABI.data.output?.contracts[sourceName][contractName]
               .storageLayout.types[stateVariable.type].numberOfBytes
           ])
         }
         mackDownData.push({
           "table": {
-            "columns": ["name", "slot", "offset", "type", "idx", "artifact", "numberOfBytes"],
-            "rows":[
-              rowsData
-            ]
+            "columns": ["contract","state_variable", "storage_slot", "offset", "type", "idx", "artifact", "numberOfBytes"],
+            "rows":rowsData
           }
         })
         data.contracts.push(contract);
@@ -100,13 +104,13 @@ export class StorageLayout {
           outputDirectory + "/storage.json",
           JSON.stringify(data)
         );
-
-        fs.writeFileSync(
-          outputDirectory + "/output.md",
-          tsMarkdown(mackDownData),
-        );
       }
     }
+    fs.writeFileSync(
+      outputDirectory + "/storage.md",
+      tsMarkdown(mackDownData),
+      "utf-8"
+    );
     const prettifier = new Prettify(data.contracts);
     prettifier.tabulate();
   }

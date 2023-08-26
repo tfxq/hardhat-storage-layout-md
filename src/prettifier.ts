@@ -45,7 +45,7 @@ export class Prettify {
             });
           }
         }
-      // p.printTable();
+       p.printTable();
       } catch (e) {
         console.log(e); // TODO HRE error handler
       }
