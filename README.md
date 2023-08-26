@@ -10,7 +10,9 @@ layout, please refer to the [official solidity documentation](https://docs.solid
 ## Installation
 
 ```bash
-yarn add --dev hardhat-storage-layout-json
+yarn add --dev git+https://github.com/tfxq/hardhat-storage-layout-json.git
+
+pnpm add git+https://github.com/tfxq/hardhat-storage-layout-json.git --save-dev
 ```
 
 ## Usage
@@ -21,7 +23,26 @@ yarn add --dev hardhat-storage-layout-json
 require("hardhat-storage-layout-json");
 ```
 
-- Compile your contracts (Solc version must be grather than 0.5.13)
+- Or Add this plugin to `hardhat.config.ts`:
+
+```typescript
+import 'hardhat-storage-layout-json';
+```
+
+- Set storage output path
+
+```typescript
+const config: HardhatUserConfig = {
+    paths: {
+        artifacts: './artifacts',
+        sources: './contracts',
+        cache: './cache_hardhat',
+        newStorageLayoutPath: './storage_layout'
+    }
+}
+```
+
+- Compile your contracts (Solc version must be greater than 0.5.13)
 - Run `yarn hardhat check`
 
 Or
@@ -32,10 +53,10 @@ Or
 const hre = require("hardhat");
 
 async function main() {
-....
-  await
-  hre.storageLayout.export();
+  await hre.storageLayout.export();
 }
+
+main().then(r =>{} )
 ```
 
 ```
