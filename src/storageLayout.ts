@@ -2,7 +2,7 @@ import fs from "fs";
 import { HardhatPluginError } from "hardhat/plugins";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import path from "path";
-
+import { tsMarkdown } from 'ts-markdown'
 import { Prettify } from "./prettifier";
 import "./type-extensions";
 import { Row, Table } from "./types";
@@ -14,26 +14,7 @@ export class StorageLayout {
     this.env = hre;
   }
 
-  public jsonToMarkdown(jsonData: any[]): string {
-    if (!Array.isArray(jsonData) || jsonData.length === 0) {
-      return '';
-    }
-
-    const headers = Object.keys(jsonData[0]);
-    const separator = headers.map(() => '---');
-    const rows = jsonData.map(obj => headers.map(key => obj[key]));
-
-    const table = [
-      headers.join(' | '),
-      separator.join(' | '),
-      rows.map(row => row.join(' | ')).join('\n'),
-    ].join('\n');
-
-    return table;
-  }
-
   public async export() {
-    
     const storageLayoutPath = this.env.config.paths.newStorageLayoutPath;
     const outputDirectory = path.resolve(storageLayoutPath);
     if (!outputDirectory.startsWith(this.env.config.paths.root)) {
@@ -70,6 +51,7 @@ export class StorageLayout {
     names.sort((a, b) => a.contractName.localeCompare(b.contractName));
 
     const data: Table = { contracts: [] };
+    const mackDownData=[]
     for (const { sourceName, contractName } of names) {
       for (const artifactJsonABI of artifacts) {
         const storage =
@@ -79,6 +61,12 @@ export class StorageLayout {
           continue;
         }
         const contract: Row = { name: contractName, stateVariables: [] };
+
+        mackDownData.push({
+            "h3":contractName
+        })
+        
+        let rowsData =[]
         for (const stateVariable of storage) {
           contract.stateVariables.push({
             name: stateVariable.label,
@@ -88,10 +76,24 @@ export class StorageLayout {
             idx: artifactJsonABI.idx,
             artifact: artifactJsonABI.source,
             numberOfBytes:
-              artifactJsonABI.data.output?.contracts[sourceName][contractName]
-                .storageLayout.types[stateVariable.type].numberOfBytes,
+            artifactJsonABI.data.output?.contracts[sourceName][contractName]
+              .storageLayout.types[stateVariable.type].numberOfBytes,
           });
+          rowsData.push([
+            stateVariable.label,stateVariable.slot,stateVariable.offset,
+            stateVariable.type,artifactJsonABI.idx,artifactJsonABI.source,
+            artifactJsonABI.data.output?.contracts[sourceName][contractName]
+              .storageLayout.types[stateVariable.type].numberOfBytes
+          ])
         }
+        mackDownData.push({
+          "table": {
+            "columns": ["name", "slot", "offset", "type", "idx", "artifact", "numberOfBytes"],
+            "rows":[
+              rowsData
+            ]
+          }
+        })
         data.contracts.push(contract);
 
         fs.writeFileSync(
@@ -99,13 +101,13 @@ export class StorageLayout {
           JSON.stringify(data)
         );
 
-        const markdownData = this.jsonToMarkdown(JSON.parse(JSON.stringify(data)));
-        fs.writeFileSync(outputDirectory +"/output.md", markdownData, 'utf-8');
+        fs.writeFileSync(
+          outputDirectory + "/output.md",
+          tsMarkdown(mackDownData),
+        );
       }
     }
     const prettifier = new Prettify(data.contracts);
     prettifier.tabulate();
   }
 }
-
-
