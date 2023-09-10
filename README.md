@@ -10,9 +10,9 @@ layout, please refer to the [official solidity documentation](https://docs.solid
 ## Installation
 
 ```bash
-yarn add --dev git+https://github.com/tfxq/hardhat-storage-layout-md.git
+yarn add --dev hardhat-storage-layout-md
 
-pnpm add git+https://github.com/tfxq/hardhat-storage-layout-md.git --save-dev
+pnpm add hardhat-storage-layout-md --save-dev
 ```
 
 ## Usage
@@ -20,13 +20,13 @@ pnpm add git+https://github.com/tfxq/hardhat-storage-layout-md.git --save-dev
 - Add this plugin to `hardhat.config.js`:
 
 ```javascript
-require("hardhat-storage-layout-json");
+require("hardhat-storage-layout-md");
 ```
 
 - Or Add this plugin to `hardhat.config.ts`:
 
 ```typescript
-import 'hardhat-storage-layout-json';
+import 'hardhat-storage-layout-md';
 ```
 
 - Set storage output path
