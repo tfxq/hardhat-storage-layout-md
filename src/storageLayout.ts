@@ -87,14 +87,13 @@ export class StorageLayout {
             stateVariable.offset,
             stateVariable.type,
             artifactJsonABI.idx,
-            artifactJsonABI.source,
             artifactJsonABI.data.output?.contracts[sourceName][contractName]
               .storageLayout.types[stateVariable.type].numberOfBytes
           ])
         }
         mackDownData.push({
           "table": {
-            "columns": ["contract","state_variable", "storage_slot", "offset", "type", "idx", "artifact", "numberOfBytes"],
+            "columns": ["contract","state_variable", "storage_slot", "offset", "type", "idx", "numberOfBytes"],
             "rows":rowsData
           }
         })
