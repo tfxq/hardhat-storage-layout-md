@@ -10,9 +10,9 @@ layout, please refer to the [official solidity documentation](https://docs.solid
 ## Installation
 
 ```bash
-yarn add --dev git+https://github.com/tfxq/hardhat-storage-layout-json.git
+yarn add --dev git+https://github.com/tfxq/hardhat-storage-layout-md.git
 
-pnpm add git+https://github.com/tfxq/hardhat-storage-layout-json.git --save-dev
+pnpm add git+https://github.com/tfxq/hardhat-storage-layout-md.git --save-dev
 ```
 
 ## Usage

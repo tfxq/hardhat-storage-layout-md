@@ -1,10 +1,10 @@
 {
-  "name": "hardhat-storage-layout-json",
+  "name": "hardhat-storage-layout-md",
   "version": "0.0.1",
   "description": "Hardhat TS plugin to generate a json file describing the storage layout of contracts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tfxq/hardhat-storage-layout-json.git"
+    "url": "git+https://github.com/tfxq/hardhat-storage-layout-md.git"
   },
   "author": "3obby",
   "license": "MIT",
@@ -36,7 +36,7 @@
   ],
   "dependencies": {
     "console-table-printer": "^2.9.0",
-    "ts-markdown": "0.3.0-beta.1"
+    "ts-markdown": "1.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -57,9 +57,9 @@
     "hardhat": "^2.15.0"
   },
   "bugs": {
-    "url": "https://github.com/tfxq/hardhat-storage-layout-json/issues"
+    "url": "https://github.com/tfxq/hardhat-storage-layout-md/issues"
   },
-  "homepage": "https://github.com/tfxq/hardhat-storage-layout-json#readme",
+  "homepage": "https://github.com/tfxq/hardhat-storage-layout-md#readme",
   "directories": {
     "test": "test"
   }
