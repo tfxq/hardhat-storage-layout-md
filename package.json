@@ -1,6 +1,6 @@
 {
   "name": "hardhat-storage-layout-md",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hardhat TS plugin to generate a json file describing the storage layout of contracts",
   "repository": {
     "type": "git",
