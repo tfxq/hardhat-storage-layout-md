@@ -4,7 +4,6 @@ export interface StateVariable {
   offset: number;
   type: string;
   idx: number;
-  artifact: string;
   numberOfBytes: string;
 }
 

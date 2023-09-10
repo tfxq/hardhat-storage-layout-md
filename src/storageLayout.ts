@@ -74,7 +74,6 @@ export class StorageLayout {
             offset: stateVariable.offset,
             type: stateVariable.type,
             idx: artifactJsonABI.idx,
-            artifact: artifactJsonABI.source,
             numberOfBytes:
             artifactJsonABI.data.output?.contracts[sourceName][contractName]
               .storageLayout.types[stateVariable.type].numberOfBytes,

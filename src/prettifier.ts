@@ -40,7 +40,6 @@ export class Prettify {
               offset: stateVariable.offset,
               type: stateVariable.type,
               idx: stateVariable.idx,
-              artifact: stateVariable.artifact,
               numberOfBytes: stateVariable.numberOfBytes,
             });
           }
